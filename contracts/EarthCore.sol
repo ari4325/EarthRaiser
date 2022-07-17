@@ -3,13 +3,35 @@ pragma solidity 0.8.15;
 
 import "./EarthNFT.sol";
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+interface IERC20 {
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    function totalSupply() external view returns (uint256);
+
+    function balanceOf(address account) external view returns (uint256);
+
+    function transfer(address to, uint256 amount) external returns (bool);
+
+    function allowance(address owner, address spender) external view returns (uint256);
+
+    function approve(address spender, uint256 amount) external returns (bool);
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) external returns (bool);
+}
 
 contract EarthCore {
 
     struct Project{
         address user;
         string project_name;
+        string project_description;
         uint tokenId;
         uint fundsSeeked;
     }
@@ -45,9 +67,9 @@ contract EarthCore {
       userParticipationType[msg.sender] = _type;
   }
 
-  function createProject(string memory projectName, string memory uri, uint _fundSeeked) external {
+  function createProject(string memory projectName, string memory project_desc, string memory uri, uint _fundSeeked) external {
       uint token = _tokenContract.createToken(msg.sender, uri);
-      Project memory prj = Project(msg.sender, projectName, token, _fundSeeked);
+      Project memory prj = Project(msg.sender, projectName, project_desc, token, _fundSeeked * (10 ** 18));
 
       tokenProjectStatus[token] = true;
       tokenToProject[token] = prj;

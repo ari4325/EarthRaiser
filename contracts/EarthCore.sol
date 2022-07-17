@@ -36,15 +36,14 @@ contract EarthCore {
         uint fundsSeeked;
     }
 
-   mapping(address => uint) userParticipationType;
-   mapping(address => string) userName;
-   mapping(address => Project) userActiveProject;
    mapping(address => Project[]) userProjects;
+   mapping(address => uint[]) userTokens;
 
    mapping(uint => Project) tokenToProject;
    mapping(uint => address) tokenToUser;
    mapping(uint => bool) tokenProjectStatus;
-   mapping(uint =>  uint) tokenFundsSeeked;
+   mapping(uint => uint) tokenFundsSeeked;
+   mapping(address => uint) totalFundsReceived;
 
    Project[] projects; 
 
@@ -62,11 +61,6 @@ contract EarthCore {
       USDC = IERC20(tokenAddress);
   }
 
-  function participate(string memory name, uint _type) external {
-      userName[msg.sender] = name;
-      userParticipationType[msg.sender] = _type;
-  }
-
   function createProject(string memory projectName, string memory project_desc, string memory uri, uint _fundSeeked) external {
       uint token = _tokenContract.createToken(msg.sender, uri);
       Project memory prj = Project(msg.sender, projectName, project_desc, token, _fundSeeked * (10 ** 18));
@@ -76,7 +70,7 @@ contract EarthCore {
       tokenToUser[token] = msg.sender;
       tokenFundsSeeked[token] = _fundSeeked;
 
-      userActiveProject[msg.sender] = prj;
+      userTokens[msg.sender].push(token);
       userProjects[msg.sender].push(prj);
 
       projects.push(prj);
@@ -87,18 +81,36 @@ contract EarthCore {
       Project storage prj = tokenToProject[tokenID];
       uint funds = prj.fundsSeeked;
 
-      require(USDC.allowance(msg.sender, prj.user) >= funds, "User has not approved transfer");
+      require(USDC.allowance(msg.sender, address(this)) >= funds, "User has not approved transfer");
       require(USDC.transferFrom(msg.sender, prj.user, funds), "Fund transfer failed");
 
-      _tokenContract.transferFrom(prj.user, msg.sender, tokenID);
+      //_tokenContract.transferFrom(prj.user, msg.sender, tokenID);
+      totalFundsReceived[prj.user] += prj.fundsSeeked;
 
       tokenProjectStatus[tokenID] = false;
-      delete userActiveProject[msg.sender];
   }
 
-  function getActiveProject() external view returns(Project memory) {
-      return userActiveProject[msg.sender];
+  function getUserTokens() external view returns(uint[] memory){
+      return userTokens[msg.sender];
   }
 
-  
+  function getUserTokens(address _user) external view returns(uint[] memory){
+      return userTokens[_user];
+  }
+
+  function getUserTokenCount() external view returns(uint){
+      return userTokens[msg.sender].length;
+  }
+
+  function getUserTokenCount(address _user) external view returns(uint){
+      return userTokens[_user].length;
+  }
+
+  function getUserFunding(address _user) external view returns(uint) {
+      return totalFundsReceived[_user];
+  }
+
+  function getProjectData(uint _token) external view returns (Project memory) {
+      return tokenToProject[_token];
+  }
 }

@@ -16,6 +16,7 @@
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="img/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   </head>
 
@@ -76,9 +77,9 @@
 
               <li class="group">
                 <a
-                  href="transactions.html"
+                  href="explore.html"
                   class="text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5"
-                  >Transactions</a
+                  >Explore</a
                 >
               </li>
               <li class="group">
@@ -290,10 +291,12 @@
                 >
             </p>
 
+            <input type="number" id="tokenId" placeholder="Enter tokenID to fund" style="margin-top: 1%;">
+
             <p class="dark:text-jacarta-300 mx-auto max-w-xl text-lg">
               <button 
-                  style = "margin: 5%;"
-                  id="withdraw"
+                  style = "margin: 1%;"
+                  id="fundProj"
                   class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
                   >Fund a Project</button
                 >
@@ -444,146 +447,6 @@
         </div>
       </div>
     </div>
-      
-      <!-- Wallet Modal -->
-    <div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
-      <div class="modal-dialog max-w-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="walletModalLabel">Wallet connect</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                class="fill-jacarta-700 h-6 w-6 dark:fill-white"
-              >
-                <path fill="none" d="M0 0h24v24H0z" />
-                <path
-                  d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <!-- Body -->
-          <div class="modal-body p-6 text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              x="0"
-              y="0"
-              viewBox="0 0 318.6 318.6"
-              xml:space="preserve"
-              class="mb-4 inline-block h-8 w-8"
-            >
-              <style>
-                .st1,
-                .st6 {
-                  fill: #e4761b;
-                  stroke: #e4761b;
-                  stroke-linecap: round;
-                  stroke-linejoin: round;
-                }
-                .st6 {
-                  fill: #f6851b;
-                  stroke: #f6851b;
-                }
-              </style>
-              <path
-                fill="#e2761b"
-                stroke="#e2761b"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M274.1 35.5l-99.5 73.9L193 65.8z"
-              />
-              <path
-                class="st1"
-                d="M44.4 35.5l98.7 74.6-17.5-44.3zm193.9 171.3l-26.5 40.6 56.7 15.6 16.3-55.3zm-204.4.9L50.1 263l56.7-15.6-26.5-40.6z"
-              />
-              <path
-                class="st1"
-                d="M103.6 138.2l-15.8 23.9 56.3 2.5-2-60.5zm111.3 0l-39-34.8-1.3 61.2 56.2-2.5zM106.8 247.4l33.8-16.5-29.2-22.8zm71.1-16.5l33.9 16.5-4.7-39.3z"
-              />
-              <path
-                d="M211.8 247.4l-33.9-16.5 2.7 22.1-.3 9.3zm-105 0l31.5 14.9-.2-9.3 2.5-22.1z"
-                fill="#d7c1b3"
-                stroke="#d7c1b3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M138.8 193.5l-28.2-8.3 19.9-9.1zm40.9 0l8.3-17.4 20 9.1z"
-                fill="#233447"
-                stroke="#233447"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M106.8 247.4l4.8-40.6-31.3.9zM207 206.8l4.8 40.6 26.5-39.7zm23.8-44.7l-56.2 2.5 5.2 28.9 8.3-17.4 20 9.1zm-120.2 23.1l20-9.1 8.2 17.4 5.3-28.9-56.3-2.5z"
-                fill="#cd6116"
-                stroke="#cd6116"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M87.8 162.1l23.6 46-.8-22.9zm120.3 23.1l-1 22.9 23.7-46zm-64-20.6l-5.3 28.9 6.6 34.1 1.5-44.9zm30.5 0l-2.7 18 1.2 45 6.7-34.1z"
-                fill="#e4751f"
-                stroke="#e4751f"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                class="st6"
-                d="M179.8 193.5l-6.7 34.1 4.8 3.3 29.2-22.8 1-22.9zm-69.2-8.3l.8 22.9 29.2 22.8 4.8-3.3-6.6-34.1z"
-              />
-              <path
-                fill="#c0ad9e"
-                stroke="#c0ad9e"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M180.3 262.3l.3-9.3-2.5-2.2h-37.7l-2.3 2.2.2 9.3-31.5-14.9 11 9 22.3 15.5h38.3l22.4-15.5 11-9z"
-              />
-              <path
-                fill="#161616"
-                stroke="#161616"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M177.9 230.9l-4.8-3.3h-27.7l-4.8 3.3-2.5 22.1 2.3-2.2h37.7l2.5 2.2z"
-              />
-              <path
-                d="M278.3 114.2l8.5-40.8-12.7-37.9-96.2 71.4 37 31.3 52.3 15.3 11.6-13.5-5-3.6 8-7.3-6.2-4.8 8-6.1zM31.8 73.4l8.5 40.8-5.4 4 8 6.1-6.1 4.8 8 7.3-5 3.6 11.5 13.5 52.3-15.3 37-31.3-96.2-71.4z"
-                fill="#763d16"
-                stroke="#763d16"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                class="st6"
-                d="M267.2 153.5l-52.3-15.3 15.9 23.9-23.7 46 31.2-.4h46.5zm-163.6-15.3l-52.3 15.3-17.4 54.2h46.4l31.1.4-23.6-46zm71 26.4l3.3-57.7 15.2-41.1h-67.5l15 41.1 3.5 57.7 1.2 18.2.1 44.8h27.7l.2-44.8z"
-              />
-            </svg>
-            <p class="text-center dark:text-white">
-              Connect your Metamask wallet to get started
-            </p>
-          </div>
-          <!-- end body -->
-
-          <div class="modal-footer">
-            <div class="flex items-center justify-center space-x-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer noopener"
-                class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
-              >
-                Connect wallet
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
     <!-- JS Scripts -->
@@ -594,7 +457,7 @@
     <script>
         const USDC = "0x37766C4A98d3E75FB3921620F265c23aDDC9e984";
         const earthNFTaddress = "0xE96Ac068BeC70117f5408f138EB17eBCB4e45b1A";
-        const contract_address = '0x5b31b7ABdF6498C0e3820e343F99BE964E500a74';
+        const contract_address = '0xfd0409E2F8c5617558625986370F3F23D5d6E1a9';
 
         var earthraisercore, eathraiserabi, earthNFT, earthNFTabi;
         var accounts, web3, walletAddress, balance, availableBalance, mintedNFT, total_funding, preview, uploadInput, mintTokenBtn;
@@ -604,6 +467,11 @@
         var upload = false;
         var minting = false;
         var currentCID, currentTransactionHash;
+
+        var tokenId, fundProj;
+
+        tokenId = document.getElementById('tokenId');
+        fundProj = document.getElementById('fundProj');
 
         balance = document.getElementById("balance");
         walletAddress = document.getElementById("walletAddress");
@@ -619,6 +487,8 @@
         projectName = document.getElementById('projectName');
         projectDesc = document.getElementById('projectDescription');
         funds = document.getElementById('fundSeeked');
+
+        
 
         async function load() {
               web3 = new Web3(window.ethereum);
@@ -644,7 +514,7 @@
 
               earthraisercore = new web3.eth.Contract(earthraiserabi, contract_address);
               earthNFT = new web3.eth.Contract(earthNFTabi, earthNFTaddress);
-              //updateUI();
+              updateUI();
         }
 
         async function previewImage() {
@@ -660,21 +530,21 @@
            }
         }
 
-        /*async function updateUI() {
-          var deposit, limit;
-            await astterFicore.methods.getDeposit().call({from: accounts[0]})
+        async function updateUI() {
+          var nfts, funding;
+            await earthraisercore.methods.getUserTokenCount().call({from: accounts[0]})
             .then(function(result){
                 console.log(result);
-                deposit = result;
+                nfts = result;
             });
-            matic.innerText = deposit*Math.pow(10, -18);
-            await astterFicore.methods.getLimit().call({from: accounts[0]})
+            mintedNFT.innerText = nfts;
+            await earthraisercore.methods.getUserFunding(accounts[0]).call({from: accounts[0]})
             .then(function(result){
                 console.log(result);
-                limit = result;
+                funding = result;
             });
-            usdt.innerText = (limit*Math.pow(10, -18)).toFixed(4);
-        }*/
+            total_funding.innerText = (funding*Math.pow(10, -18)).toFixed(2);
+        }
 
         load();
 
@@ -746,6 +616,10 @@
           }
 
           
+        })
+
+        fundProj.addEventListener("click", () => {
+          window.open('/details.html?tokenId='+tokenId.value, "");
         })
 
          

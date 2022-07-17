@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EarthRaiser</title>
+
+    <meta charset="utf-8" />
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Dark Mode JS -->
+    <script src="./js/darkMode.bundle.js"></script>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  </head>
+
+  <body
+    class="dark:bg-jacarta-900 font-body text-jacarta-500 overflow-x-hidden"
+    itemscope
+    itemtype="http://schema.org/WebPage"
+  >
+    <!-- Header -->
+    <header class="js-page-header fixed top-0 z-20 w-full backdrop-blur transition-colors">
+      <div class="flex items-center px-6 py-6 xl:px-24">
+        <!-- Logo -->
+        <a href="index.html" class="shrink-0">
+          <img src="img/logo.png" class="max-h-7 dark:hidden" />
+          <img src="img/logo_white.png" class="hidden max-h-7 dark:block" />
+        </a>
+
+
+        <!-- Menu / Actions -->
+        <div
+          class="js-mobile-menu dark:bg-jacarta-800 invisible fixed inset-0 z-10 ml-auto items-center bg-white opacity-0 lg:visible lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent"
+        >
+          <!-- Mobile Logo / Menu Close -->
+          <div
+            class="t-0 dark:bg-jacarta-800 fixed left-0 z-10 flex w-full items-center justify-between bg-white p-6 lg:hidden"
+          >
+            <!-- Mobile Logo -->
+            <a href="index.html" class="shrink-0">
+              <img src="img/logo.png" class="max-h-7 dark:hidden" />
+              <img src="img/logo_white.png" class="hidden max-h-7 dark:block" />
+            </a>
+
+            <!-- Mobile Menu Close -->
+            <button
+              class="js-mobile-close border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+              aria-label="close mobile menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile Search -->
+          <form action="search" class="relative mt-24 mb-8 w-full lg:hidden">
+           
+          </form>
+
+          <!-- Primary Nav -->
+          <nav class="navbar w-full">
+            <ul class="flex flex-col lg:flex-row">
+
+              <li class="group">
+                <a
+                  href="explore.html"
+                  class="text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5"
+                  >Explore</a
+                >
+              </li>
+              <li class="group">
+                <a
+                  href="dashboard.html"
+                  class="text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5"
+                  >Dashboard</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Mobile Connect Wallet / Socials -->
+          <div class="mt-10 w-full lg:hidden">
+            <a
+              href="#"
+              class="js-wallet bg-accent shadow-accent-volume hover:bg-accent-dark block w-full rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+              data-bs-toggle="modal"
+              data-bs-target="#walletModal"
+            >
+              Connect Wallet
+            </a>
+
+            <hr class="dark:bg-jacarta-600 bg-jacarta-100 my-5 h-px border-0" />
+
+           
+          </div>
+
+          <!-- Actions -->
+          <div class="ml-8 hidden lg:flex xl:ml-12">
+            <!-- Wallet -->
+            <a
+              href="#"
+              class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+              data-bs-toggle="modal"
+              data-bs-target="#walletModal"
+              aria-label="wallet"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M22 6h-7a6 6 0 1 0 0 12h7v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2zm-7 2h8v8h-8a4 4 0 1 1 0-8zm0 3v2h3v-2h-3z"
+                />
+              </svg>
+            </a>
+
+
+            <!-- Dark Mode -->
+            <a
+              href="#"
+              class="border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent js-dark-mode-trigger ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 dark-mode-light h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:hidden"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 dark-mode-dark hidden h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:block dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Actions -->
+        <div class="ml-auto flex lg:hidden">
+          <!-- Profile -->
+          <a
+            href="edit-profile.html"
+            class="border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+            aria-label="profile"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"
+              />
+            </svg>
+          </a>
+
+          <!-- Dark Mode -->
+          <a
+            href="#"
+            class="js-dark-mode-trigger border-jacarta-100 hover:bg-accent dark:hover:bg-accent focus:bg-accent group ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 dark-mode-light h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:hidden"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 dark-mode-dark hidden h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:block dark:fill-white"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"
+              />
+            </svg>
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            class="js-mobile-toggle border-jacarta-100 hover:bg-accent dark:hover:bg-accent focus:bg-accent group ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+            aria-label="open mobile menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M18 18v2H6v-2h12zm3-7v2H3v-2h18zm-3-7v2H6V4h12z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <div style="margin-top: 5%;">
+        
+      </div>
+    </main>
+      <!-- end hero -->
+
+    <main class="mt-24" style="margin-left: 30%;">
+      <!-- Item -->
+      <section class="relative pt-12 pb-24 lg:py-24">
+        <div class="container">
+          <!-- Item -->
+          <div class="md:flex md:flex-wrap">
+
+            <!-- Details -->
+            <div class="md:w-3/5 md:basis-auto md:pl-8 lg:w-1/2 lg:pl-[3.75rem]">
+              <!-- Collection / Likes / Actions -->
+              <div class="mb-3 flex">
+                <!-- Collection -->
+                <div class="flex items-center">
+                  <span class="text-accent mr-2 text-sm font-bold">Created by: </span> <span class="text-accent mr-2 text-sm font-bold" id="creator"></span>
+                </div>
+
+                <!-- Likes / Actions -->
+                <div>
+                  <div>
+                   
+                    
+                  </div>
+
+                  <!-- Actions -->
+                  <div>
+                      
+                    <div>
+                     
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h1 class="font-display text-jacarta-700 mb-4 text-4xl font-semibold dark:text-white" id="projectName"></h1>
+               <span class="text-green text-sm font-medium tracking-tight" id="projectDescription"><span class="dark:text-jacarta-300 text-jacarta-400 text-sm" id="description"></span></span>
+               
+
+              <div class="mb-8 flex items-center space-x-4 whitespace-nowrap">
+
+                <span class="text-green text-sm font-medium tracking-tight">Funds Seeked: <span class="dark:text-jacarta-300 text-jacarta-400 text-sm" id="funds"> </span></span>
+                 
+                 
+              </div>
+              
+              
+              <div
+                class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 rounded-2lg border bg-white p-8"
+              >
+
+              <img id="nft_img"/>
+
+
+                <button style="margin-top:5%;" 
+                  id="payFullBtn"
+                  class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block w-full rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+                  >Fund this Project</a
+                >
+              </div>
+              <!-- end bid -->
+            </div>
+            <!-- end details -->
+          </div>
+              
+
+
+    <!-- JS Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="./js/countdown.bundle.js"></script>
+    <script src="./js/app.bundle.js"></script>
+    <script src="./js/charts.bundle.js"></script>
+    <script>
+
+        
+
+      var projectName, projectDescription, payInstallmentBtn, creator, nft_img, payFullBtn, funds;
+      projectName = document.getElementById('projectName');
+      //projectName.innerText = "Hello World";
+      projectDescription =  document.getElementById('projectDescription');
+      //projectDescription.innerText = "Hello World NFT series";
+      creator = document.getElementById('creator');
+      nft_img = document.getElementById('nft_img');
+      funds = document.getElementById('funds');
+
+      payFullBtn = document.getElementById('payFullBtn');
+
+      const queryString = window.location.search;
+      const parameters = new URLSearchParams(queryString);
+      const value = parameters.get('tokenId');
+
+      const USDC = "0x37766C4A98d3E75FB3921620F265c23aDDC9e984";
+      const earthNFTaddress = "0xE96Ac068BeC70117f5408f138EB17eBCB4e45b1A";
+      const contract_address = '0xfd0409E2F8c5617558625986370F3F23D5d6E1a9';
+
+      var earthraisercore, eathraiserabi, usdctoken, usdc_abi, earthNFT, earthNFTabi;
+
+      var prName, prDesc, fundSeeked;
+
+      var transaction = false;
+      var approve = false;
+      var currentTransactionHash;
+
+       async function load() {
+
+          web3 = new Web3(window.ethereum);
+          accounts = await web3.eth.getAccounts();
+          if(accounts[0] != undefined) {
+              //0x0eE25Ea9CdAEAB823F12d3Ef18C097f413E369D7
+              availableBalance = await web3.eth.getBalance(accounts[0]);
+          }
+
+          await fetch('../build/contracts/EarthCore.json')
+            .then(response => response.json())
+            .then(data => {
+              eathraiserabi = data.abi;
+            });
+
+          earthraisercore = await new web3.eth.Contract(eathraiserabi, contract_address);
+
+          await fetch('../build/contracts/ERC20.json')
+            .then(response => response.json())
+            .then(data => {
+              usdc_abi = data.abi;
+            });
+
+          usdctoken = await new web3.eth.Contract(usdc_abi, USDC);
+
+          await fetch('../build/contracts/EarthRaiserNFT.json')
+            .then(response => response.json())
+            .then(data => {
+              earthNFTabi = data.abi;
+          });
+
+          earthNFT = new web3.eth.Contract(earthNFTabi, earthNFTaddress);
+
+          await earthraisercore.methods.getProjectData(value).call({from: accounts[0]})
+          .then(async function(result){
+             console.log(result);
+             prName = result[1];
+             prDesc = result[2];
+             fundSeeked = result[4];
+             creator.innerText = result[0] ; 
+             projectName.innerText = prName;
+             projectDescription.innerText = prDesc;
+             funds.innerText = fundSeeked*Math.pow(10, -18) + " USDC";
+          });
+
+          await earthNFT.methods.tokenURI(value).call({from: accounts[0]})
+          .then(async function(result){
+            console.log(result);
+             nft_img.setAttribute("src", "https://"+ result);
+          })
+
+      }
+
+      load();
+
+      payFullBtn.addEventListener("click", async function(){
+
+        if(transaction == true && approve == false) {
+          window.open(
+            "https://mumbai.polygonscan.com/tx/"+currentTransactionHash, "_blank");
+        } 
+
+        if(transaction == false && approve == false) {
+            var functionData = await usdctoken.methods.approve(contract_address, fundSeeked).encodeABI();
+            web3.eth.sendTransaction({
+                from: accounts[0],
+                to: USDC,
+                data: functionData
+            })
+            .on('transactionHash', function(hash){
+                console.log(hash);
+                currentTransactionHash = hash;
+                transaction = true;
+                
+                payFullBtn.innerText = "View your transaction";
+            })
+            .on('receipt', function(receipt){
+                console.log("receipt"+receipt);
+                payFullBtn.innerText = "Fund this Project"
+
+                transaction = false;
+                approve = true;            
+            })
+            .on('confirmation', function(confirmationNumber, receipt){ 
+              console.log("confirmation"+receipt);
+            })
+            .on('error', console.error);
+        }
+
+        if(transaction == false && approve == true) {
+          var available = await usdctoken.methods.balanceOf(accounts[0]).call({from: accounts[0]});
+          console.log(available);
+
+          if(available < fundSeeked) {
+            alert("You have insufficient amount of USDC");
+            transaction = false;
+            approve = false;
+            payFullBtn.innerText = "Approve"; 
+          }else{
+            var functionData = await earthraisercore.methods.fundProject(value).encodeABI();
+            web3.eth.sendTransaction({
+                from: accounts[0],
+                to: contract_address,
+                data: functionData
+            })
+            .on('transactionHash', function(hash){
+                console.log(hash);
+                currentTransactionHash = hash;
+                transaction = true;
+                approve = false;
+                
+                payFullBtn.innerText = "View your transaction";
+            })
+            .on('receipt', function(receipt){
+                console.log(receipt);
+                console.log("receipt"+receipt);
+
+                payFullBtn.innerText = "Approve More"
+                alert("Thank you for funding to a good cause. We will let the creator know that they have received a fund in goowill. Meanwhile you can approve and fund this project more or check out other projects those are available.")
+
+                transaction = false;
+                approve = false;
+            })
+            .on('confirmation', function(confirmationNumber, receipt){ 
+                console.log("confirmation"+receipt);
+                
+            })
+            .on('error', console.error);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

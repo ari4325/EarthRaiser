@@ -1,7 +1,5 @@
 # EarthRaiser
 
-Work Plan
-
 
 A decentralized platform that supports the individual effort of cleaning the Earth.
 

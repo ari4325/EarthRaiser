@@ -28,10 +28,7 @@
     <header class="js-page-header fixed top-0 z-20 w-full backdrop-blur transition-colors">
       <div class="flex items-center px-6 py-6 xl:px-24">
         <!-- Logo -->
-        <a href="index.html" class="shrink-0">
-          <img src="img/logo.png" class="max-h-7 dark:hidden" />
-          <img src="img/logo_white.png" class="hidden max-h-7 dark:block" />
-        </a>
+        <div class="text-jacarta-300 font-display mb-5 text-center text-5xl dark:text-white md:text-left lg:text-2xl xl:text-3xl" style="margin: 1%;">EARTHRAISER</div>
 
 
         <!-- Menu / Actions -->
@@ -340,8 +337,8 @@
       const value = parameters.get('tokenId');
 
       const USDC = "0x37766C4A98d3E75FB3921620F265c23aDDC9e984";
-      const earthNFTaddress = "0xE96Ac068BeC70117f5408f138EB17eBCB4e45b1A";
-      const contract_address = '0xfd0409E2F8c5617558625986370F3F23D5d6E1a9';
+      const earthNFTaddress = "0xDB96fcFf07514e741c560b84c7CBE4964600bcc3";
+      const contract_address = '0xe96F888DEB1809259A151103d7A13dE5A5d20c74';
 
       var earthraisercore, eathraiserabi, usdctoken, usdc_abi, earthNFT, earthNFTabi;
 
@@ -443,8 +440,9 @@
         if(transaction == false && approve == true) {
           var available = await usdctoken.methods.balanceOf(accounts[0]).call({from: accounts[0]});
           console.log(available);
+          console.log(fundSeeked);
 
-          if(available < fundSeeked) {
+          if(available*(Math.pow(10, -18)) < fundSeeked*(Math.pow(10, -18))) {
             alert("You have insufficient amount of USDC");
             transaction = false;
             approve = false;

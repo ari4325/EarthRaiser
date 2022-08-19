@@ -417,7 +417,7 @@
             >
               <div class="border-jacarta-100 bg-jacarta-50 flex flex-1 items-center self-stretch border-r px-2">
                 
-                <input type="file" accept="image/*" style="margin: 2%" id="uploadInput" onchange="previewImage()" />
+                <input type="file" accept="/*" style="margin: 2%" id="uploadInput" onchange="previewImage()" />
               </div>
 
               
@@ -557,6 +557,7 @@
             "https://mumbai.polygonscan.com/tx/"+currentTransactionHash, "_blank");
           }
           if(upload == true && minting == false) {
+            accounts = await web3.eth.getAccounts();
             console.log(accounts[0]);
             var functionData = await earthraisercore.methods.createProject(projectName.value, projectDesc.value, currentCID+".ipfs.nftstorage.link", parseInt(funds.value)).encodeABI();
             
